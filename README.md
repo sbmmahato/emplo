@@ -1,6 +1,6 @@
 
 
-# Emplo: Open Source Claude Managed Agents
+# Emplo: Open Source Alternative to Claude Managed Agents
 
 This project aims to be an open-source alternative to the latest Claude Managed Agents release by Anthropic. Emplo provides a foundation for 24/7 AI employees, enabling agentic workflows for autonomous task execution.
 
