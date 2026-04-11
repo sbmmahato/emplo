@@ -1,0 +1,51 @@
+
+services:
+
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-goclaw}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-goclaw}
+      POSTGRES_DB: ${POSTGRES_DB:-goclaw}
+    volumes:
+      - goclaw_pg_data:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  goclaw:
+    image: ${GOCLAW_IMAGE:-ghcr.io/nextlevelbuilder/goclaw:latest}
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "${GOCLAW_HTTP_PORT:-18790}:18790"
+    environment:
+      GOCLAW_CONFIG: /app/data/config.json
+      GOCLAW_POSTGRES_DSN: postgresql://${POSTGRES_USER:-goclaw}:${POSTGRES_PASSWORD:-goclaw}@postgres:5432/${POSTGRES_DB:-goclaw}?sslmode=disable
+      GOCLAW_GATEWAY_TOKEN: ${GOCLAW_GATEWAY_TOKEN:?set GOCLAW_GATEWAY_TOKEN}
+      GOCLAW_ENCRYPTION_KEY: ${GOCLAW_ENCRYPTION_KEY:?set GOCLAW_ENCRYPTION_KEY}
+      GOCLAW_HTTP_ADDR: 0.0.0.0:18790
+      GOCLAW_AUTO_UPGRADE: ${GOCLAW_AUTO_UPGRADE:-true}
+    volumes:
+      - goclaw_data:/app/data
+      - goclaw_workspace:/app/workspace
+
+volumes:
+  goclaw_pg_data:
+  goclaw_data:
+  goclaw_workspace:

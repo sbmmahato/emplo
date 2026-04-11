@@ -1,0 +1,27 @@
+
+services:
+  goclaw:
+    image: ${GOCLAW_GATEWAY_IMAGE:-goclaw-with-docker:local}
+    build:
+      context: .
+      dockerfile: Dockerfile.gateway-sandbox
+      args:
+        GOCLAW_BASE_IMAGE: ${GOCLAW_BASE_IMAGE:-ghcr.io/nextlevelbuilder/goclaw:latest}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    cap_drop: []
+    cap_add:
+      - NET_BIND_SERVICE
+    security_opt: []
+    group_add:
+      - ${DOCKER_GID:-999}
+    environment:
+      GOCLAW_SANDBOX_MODE: ${GOCLAW_SANDBOX_MODE:-all}
+      GOCLAW_SANDBOX_IMAGE: ${GOCLAW_SANDBOX_IMAGE:-goclaw-sandbox:bookworm-slim}
+      GOCLAW_SANDBOX_WORKSPACE_ACCESS: ${GOCLAW_SANDBOX_WORKSPACE_ACCESS:-rw}
+      GOCLAW_SANDBOX_SCOPE: ${GOCLAW_SANDBOX_SCOPE:-session}
+      GOCLAW_SANDBOX_MEMORY_MB: ${GOCLAW_SANDBOX_MEMORY_MB:-512}
+      GOCLAW_SANDBOX_CPUS: ${GOCLAW_SANDBOX_CPUS:-1.0}
+      GOCLAW_SANDBOX_TIMEOUT_SEC: ${GOCLAW_SANDBOX_TIMEOUT_SEC:-300}
+      GOCLAW_SANDBOX_NETWORK: ${GOCLAW_SANDBOX_NETWORK:-true}
+      
