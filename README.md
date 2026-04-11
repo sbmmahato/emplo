@@ -2,9 +2,19 @@
 
 # Emplo: Open Source Claude Managed Agents
 
-This project is an open source version of Claude's managed agents, aiming to provide 24/7 AI employee functionality. Please note that things are still in development, so you might run into bugs or unfinished features.
+This project aims to be an open-source alternative to the latest Claude Managed Agents release. Emplo provides a foundation for 24/7 AI employees, enabling agentic workflows for autonomous task execution.
 
-If you're interested in updates or want to try things out early, you can join the waitlist [here](https://emplo.dev).
+As AI transitions from copilots to fully autonomous agents, this repository provides developers with a playground to build, test, and deploy their own AI workforce seamlessly. Whether you want to experiment with agent routing capabilities, implement dynamic tool use, or deploy custom autonomous systems, Emplo gives you the modular building blocks to start exploring.
+
+**Focus Areas & Features:**
+- **Managed Agents Architecture:** Resilient agent loops capable of handling long-running, complex tasks.
+- **Autonomous AI Employees:** Infrastructure designed for 24/7 background task execution.
+- **Agentic Workflows:** Multi-step reasoning loops, dynamic tool calling, and structured state management.
+- **Open Source Foundation:** Fully modifiable infrastructure that you control.
+
+> **Note:** This project is actively in development. Because it is a work in progress, some core features are still being built, and you might run into bugs.
+
+If you're interested in following the development or want early access to upcoming updates, you can check out the waitlist at [emplo.dev](https://emplo.dev).
 
 
 
