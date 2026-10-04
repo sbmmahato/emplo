@@ -1,6 +1,6 @@
 
 
-# Emplo: Open Source Alternative to Claude Managed Agents
+# Emplo: Open Source Alternative to OpenAI Dots and Grok Bot
 
 [![Open Source Claude Managed Agents](https://img.shields.io/badge/Open%20Source-Claude%20Managed%20Agents-blue?style=flat-square)](#) [![Alternative to Claude Managed Agents](https://img.shields.io/badge/Alternative-Claude%20Managed%20Agents-green?style=flat-square)](#) [![24/7 AI Employees](https://img.shields.io/badge/24%2F7-AI%20Employees-purple?style=flat-square)](#)
 
